@@ -1,2 +1,2 @@
-# legato
-Piano practice journal app
+# DayFolio
+Journal app
