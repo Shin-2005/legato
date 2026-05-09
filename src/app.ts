@@ -64,7 +64,6 @@ function renderEntries() {
             <div class="empty-state">
                 <h2>No Entries Yet</h2>
                 <p>Create your first entry to get started</p>
-                <button class="add-entry-btn" onClick="openEntryDialog()">+ Add your first entry</button>
             </div>
         `
         
