@@ -69,16 +69,44 @@ function renderEntries() {
         
         return
     }
+    
+    (entriesContainer as HTMLInputElement).textContent = ''
+    entries.forEach(entry => {
+        const card = document.createElement("div")
+        card.classList.add("entry-card")
+        
+        const title = document.createElement("h3")
+        title.classList.add("entry-title")
+        const titleText = document.createTextNode(entry.title)
+        title.appendChild(titleText)
+        card.appendChild(title)
 
-    (entriesContainer as HTMLInputElement).innerHTML = entries.map(entry => `
-        <div class="entry-card">
-            <h3 class="entry-title">${entry.title}</h3>
-            <p class="entry-content">${entry.content}</p>
-            <div class="entry-actions">
-                <button class="edit-btn" onclick="openEntryDialog('${entry.id}')">Edit</button>
-                <button class="delete-btn" onclick="deleteEntry('${entry.id}')">Delete</button>
-        </div>
-        `).join('')
+        const content = document.createElement("p")
+        content.classList.add("entry-content")
+        const contentText = document.createTextNode(entry.content)
+        content.appendChild(contentText)
+        card.appendChild(content)
+
+        const actionsDiv = document.createElement("div")
+        actionsDiv.classList.add("entry-actions")
+        
+        const editBtn = document.createElement("button")
+        editBtn.classList.add("edit-btn")
+        editBtn.setAttribute("onclick", "openEntryDialog(`${entry.id}`)")
+        const editBtnText = document.createTextNode("Edit")
+        editBtn.appendChild(editBtnText)
+        actionsDiv.appendChild(editBtn)
+
+        const deleteBtn = document.createElement("button")
+        deleteBtn.classList.add("delete-btn")
+        deleteBtn.setAttribute("onclick", "deleteEntry(`${entry.id}`)")
+        const deleteBtnText = document.createTextNode("Delete")
+        deleteBtn.appendChild(deleteBtnText)
+        actionsDiv.appendChild(deleteBtn)
+
+        card.appendChild(actionsDiv);
+        (entriesContainer as HTMLInputElement).appendChild(card)
+    })
 }
 
 function openEntryDialog(entryId : string) {
@@ -93,7 +121,7 @@ function openEntryDialog(entryId : string) {
         titleInput.value = entryToEdit.title
         contentInput.value = entryToEdit.content
     } else {
-        // Add existing entry
+        // Add new entry
         editingEntryId = null
         titleInput.value = ''
         contentInput.value = ''
