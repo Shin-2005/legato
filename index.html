@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legato | Piano Practice Journal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Journal Entries</h1>
+        <div>
+            <button class="add-entry-btn" onClick="openEntryDialog()">+ Add Entry</button>
+            <button class="toggle-theme-btn">Dark Mode</button>
+        </div>
+    </header>
+
+    <main id="entriesContainer" class="entries-grid">
+
+    </main>
+
+    <dialog id="entryDialog">
+        <div class="dialog-content">
+            <div class="dialog-header">
+                <h2 id="dialogTitle" class="dialog-title"> Add new entry</h2>
+                <button class="close-btn" onClick="closeNoteDialog()">x</button>
+            </div>
+
+            <form id="entryForm">
+                <div class="form-group">
+                    <label for="entryTitle" class="form-label">Title</label>
+                    <input type="text" id="entryTitle" class="form-input" placeholder="Enter entry title..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryContent" class="form-label">Content</label>
+                    <textarea id="entryContent" class="form-textarea" placeholder="Write your note here..."></textarea>
+                </div>
+
+                <div class="dialog-actions">
+                    <button type="button" class="cancel-btn" onClick="closeNoteDialog()">Cancel</button>
+                    <button type="submit" class="save-btn">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+ 
+</body>
+</html>
