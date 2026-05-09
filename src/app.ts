@@ -1,16 +1,22 @@
-let entries = []
-let editingEntryId = null
+interface Entry {
+    id: string;
+    title: string;
+    content: string;
+}
+
+let entries: Entry[] = []
+let editingEntryId: string | null = null
 
 function loadEntries() {
     const savedEntries = localStorage.getItem('journalEntries')
     return savedEntries ? JSON.parse(savedEntries) : []
 }
 
-function saveEntry(event) {
+function saveEntry(event : MouseEvent) {
     event.preventDefault()
 
-    const title = document.getElementById('entryTitle').value.trim()
-    const content = document.getElementById('entryContent').value.trim()
+    const title = (document.getElementById('entryTitle') as HTMLInputElement).value.trim()
+    const content = (document.getElementById('entryContent') as HTMLInputElement).value.trim()
 
     if (!title) return
 
@@ -44,7 +50,7 @@ function saveEntries() {
     localStorage.setItem('journalEntries', JSON.stringify(entries))
 }
 
-function deleteEntry(entryId) {
+function deleteEntry(entryId : string) {
     entries = entries.filter(entry => entry.id != entryId)
     saveEntries()
     renderEntries()
@@ -54,7 +60,7 @@ function renderEntries() {
     const entriesContainer = document.getElementById('entriesContainer')
 
     if (entries.length === 0) {
-        entriesContainer.innerHTML = `
+        (entriesContainer as HTMLInputElement).innerHTML = `
             <div class="empty-state">
                 <h2>No Entries Yet</h2>
                 <p>Create your first entry to get started</p>
@@ -65,7 +71,7 @@ function renderEntries() {
         return
     }
 
-    entriesContainer.innerHTML = entries.map(entry => `
+    (entriesContainer as HTMLInputElement).innerHTML = entries.map(entry => `
         <div class="entry-card">
             <h3 class="entry-title">${entry.title}</h3>
             <p class="entry-content">${entry.content}</p>
@@ -76,14 +82,14 @@ function renderEntries() {
         `).join('')
 }
 
-function openEntryDialog(entryId) {
-    const dialog = document.getElementById('entryDialog')
-    const titleInput = document.getElementById('entryTitle')
-    const contentInput = document.getElementById('entryContent')
+function openEntryDialog(entryId : string) {
+    const dialog = (document.getElementById('entryDialog') as HTMLDialogElement)
+    const titleInput = (document.getElementById('entryTitle') as HTMLInputElement)
+    const contentInput = (document.getElementById('entryContent') as HTMLInputElement)
 
     if (entryId) {
         // Edit existing entry
-        const entryToEdit = entries.find(entry => entry.id === entryId)
+        const entryToEdit = (entries.find(entry => entry.id === entryId) as Entry)
         editingEntryId = entryId
         titleInput.value = entryToEdit.title
         contentInput.value = entryToEdit.content
@@ -95,12 +101,12 @@ function openEntryDialog(entryId) {
     }
 
     dialog.showModal()
-    titleInput.focus()
+    titleInput.focus() 
 } 
 
-function closeEntryDialog(event) {
-    saveEntry(event)
-    document.getElementById('entryDialog').close()
+function closeEntryDialog(event : MouseEvent) {
+    saveEntry(event);
+    (document.getElementById('entryDialog') as HTMLDialogElement).close()
 }
 
 document.addEventListener('DOMContentLoaded', function() {
