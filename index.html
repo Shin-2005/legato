@@ -24,7 +24,7 @@
         <div class="dialog-content">
             <div class="dialog-header">
                 <h2 id="dialogTitle" class="dialog-title"> Add new entry</h2>
-                <button class="close-btn" onClick="closeNoteDialog()">x</button>
+                <button id="closeBtn" class="close-btn" onClick="closeEntryDialog(event)">Done</button>
             </div>
 
             <form id="entryForm">
@@ -38,10 +38,6 @@
                     <textarea id="entryContent" class="form-textarea" placeholder="Write your note here..."></textarea>
                 </div>
 
-                <div class="dialog-actions">
-                    <button type="button" class="cancel-btn" onClick="closeNoteDialog()">Cancel</button>
-                    <button type="submit" class="save-btn">Save Entry</button>
-                </div>
             </form>
         </div>
     </dialog>
