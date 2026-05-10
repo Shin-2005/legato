@@ -8,6 +8,7 @@ body {
     margin: 2rem;
 }
 
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -15,6 +16,14 @@ header {
     margin-bottom: 2rem;
 }
 
+.add-entry-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2 ease;
+}
+
+/* Entries */
 .entries-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -24,7 +33,50 @@ header {
 .entry-card {
     border-radius: 0.75rem;
     padding: 1.5rem;
-    border: 8px solid black;
+    border: 1px solid black;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.entry-card:hover {
+    transform: scale(1.02);
+}
+
+.entry-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.entry-card:hover .entry-actions {
+    opacity: 1;
+    visibility: visible;
+}
+
+.edit-btn, .delete-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /*
+    backdrop-filter: blur(10px);
+    background: var(--base-transparent-90);
+    color: var(--text-color);
+    border: 1px solid var(--surface-color);
+    */
+}
+
+.delete-btn:hover {
+    background: #ff5252;
+    transform: scale(1.05);
+    color: white;
 }
 
 .empty-state {
@@ -42,4 +94,28 @@ header {
 
 .empty-state p {
     margin-bottom: 2rem;
+}
+
+/* Dialog */
+dialog {
+    border-radius: 1rem;
+    border: none;
+    margin: auto;
+    max-width: 500px;
+    width: 90vw;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.dialog-content {
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
 }

@@ -2,16 +2,16 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "rootDir": "src",
+    "outDir": "dist",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "es6",
-    "target": "es6",
+    "module": "ES2022",
+    "target": "ES2022",
     // "types": [],
     // For nodejs:
-    // "lib": ["esnext"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     // "types": ["node"],
     // and npm install -D @types/node
 
@@ -21,7 +21,7 @@
     // "declarationMap": true,
 
     // Stricter Typechecking Optitons
-    // "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": true,
     // "exactOptionalPropertyTypes": true,
 
     // Style Options
