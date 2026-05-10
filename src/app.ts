@@ -92,20 +92,20 @@ function renderEntries() {
         
         const editBtn = document.createElement("button")
         editBtn.classList.add("edit-btn")
-        editBtn.setAttribute("onclick", "openEntryDialog(`${entry.id}`)")
+        editBtn.setAttribute("onclick", `openEntryDialog(\`${entry.id}\`)`)
         const editBtnText = document.createTextNode("Edit")
         editBtn.appendChild(editBtnText)
         actionsDiv.appendChild(editBtn)
 
         const deleteBtn = document.createElement("button")
         deleteBtn.classList.add("delete-btn")
-        deleteBtn.setAttribute("onclick", "deleteEntry(`${entry.id}`)")
+        deleteBtn.setAttribute("onclick", `deleteEntry(\`${entry.id}\`)`)
         const deleteBtnText = document.createTextNode("Delete")
         deleteBtn.appendChild(deleteBtnText)
         actionsDiv.appendChild(deleteBtn)
 
         card.appendChild(actionsDiv);
-        (entriesContainer as HTMLInputElement).appendChild(card)
+        entriesContainer?.appendChild(card)
     })
 }
 
